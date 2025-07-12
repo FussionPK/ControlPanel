@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gankyo Control Panel</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+  <header class="header">
+    <h1>Gankyo Control Panel</h1>
+  </header>
+
+  <main>
+    <section class="section" aria-labelledby="system-actions">
+      <h2 id="system-actions"><i class="fas fa-cogs"></i> System Actions</h2>
+      <button type="button" class="btn" id="shutdownBtn">Shutdown</button>
+      <p id="shutdownMessage" aria-live="polite"></p>
+    </section>
+
+    <section class="section" aria-labelledby="system-stats">
+      <h2 id="system-stats"><i class="fas fa-chart-bar"></i> System Statistics</h2>
+      <div class="chart-container">
+        <div class="chart-wrapper">
+          <canvas id="cpuChart" aria-label="CPU Usage Chart"></canvas>
+          <div class="chart-loading" id="cpuLoading">Loading...</div>
+          <div class="chart-error" id="cpuError" hidden>Error loading chart</div>
+        </div>
+        <div class="chart-wrapper">
+          <canvas id="memChart" aria-label="Memory Usage Chart"></canvas>
+          <div class="chart-loading" id="memLoading">Loading...</div>
+          <div class="chart-error" id="memError" hidden>Error loading chart</div>
+        </div>
+        <div class="chart-wrapper">
+          <canvas id="diskChart" aria-label="Disk Usage Chart"></canvas>
+          <div class="chart-loading" id="diskLoading">Loading...</div>
+          <div class="chart-error" id="diskError" hidden>Error loading chart</div>
+        </div>
+      </div>
+      <p id="net" aria-live="polite">Net Sent/Recv: --</p>
+    </section>
+
+    <section class="section" aria-labelledby="command-terminal">
+      <h2 id="command-terminal"><i class="fas fa-terminal"></i> Command Terminal</h2>
+      <div id="terminal">
+        <div id="output" aria-live="polite"></div>
+        <form id="cmdForm">
+          <input
+            type="text"
+            id="commandInput"
+            autocomplete="off"
+            placeholder="Enter command..."
+            spellcheck="false"
+            aria-label="Command input"
+          />
+          <button type="submit" class="btn">Run</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>By Gankyo Industries © 2025</p>
+  </footer>
+</body>
+</html>
